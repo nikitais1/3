@@ -9,7 +9,7 @@ def filter_and_sorting(data: list):
 def get_date(date: str):
     """Принимает строку с датой, редактирует и возвращиет ее в нужном формате"""
     date_num = date[0:10].split('-')
-    return date_num[2] + '.' + date_num[1] + '.' + date_num[0]
+    return f"{date_num[2]}.{date_num[1]}.{date_num[0]}"
 
 
 def mask_prepare_message_number(message):
@@ -29,13 +29,18 @@ def mask_prepare_message_number(message):
 def mask_card_number(number: str):
     """Маскирует номер карты и возвращает результат"""
     if number.isdigit() and len(number) == 16:
-        return number[:4] + ' ' + number[4:6] + '** **** ' + number[-4:]
+        return f"{number[:4]} {number[4:6]}** **** {number[-4:]}"
+    else:
+        return "Проверьте правильность введенных данных"
 
 
 def mask_account_number(number: str):
     """Маскирует номер счета и возвращает результат"""
     if number.isdigit() and len(number) == 20:
-        return '**' + number[-4:]
+        # return '**' + number[-4:]
+        return f"**{number[-4:]}"
+    else:
+        return "Проверьте правильность введенных данных"
 
 
 def prepare_user_message(item: dict):
